@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mavenSSM.dao.TestDao">
+
+	<resultMap id="userMap" type="com.mavenSSM.model.User">
+		<id property="id" column="u_id" />
+  		<result property="number" column="Number" />
+  		<result property="password" column="Password" />
+  		<result property="name" column="user_Name" />
+  		<result property="gender" column="Gender" />
+  		<result property="activate" column="Activate" />
+  	</resultMap>
+  	
+  	<select id="getUser" resultMap="userMap">
+  		SELECT user.Number,user.Password,user.Name user_Name,user.ID u_id,user.Gender,user.Activate FROM user
+  	</select>
+
+</mapper>
