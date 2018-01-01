@@ -1,21 +1,33 @@
 var jsonObj = null;
-var headName = new Array("Date","Passed","Failed_TR","Failed_Environment","Failed_Artifact","Inconclusive","Comment","G1_LTE_UP","G2_MSME_UP","Effectiveness","Stability");
-var seqlist = new Array("id","date","passed","failed_TR","failed_Environment","failed_Artifact","inconclusive"," comment"," g1_LTE_UP","g2_MSME_UP","effectiveness","stability");
+var headName = {}
+var seqlist = {};
+var currentTable = '1103';
 
 $(function(){
+	headName.l1103 = new Array("Date","Passed","Failed_TR","Failed_Environment","Failed_Artifact","Inconclusive","Comment","G1_LTE_UP","G2_MSME_UP","Effectiveness","Stability");
+	headName.l1104 = new Array("Date","Passed","Failed_TR","Failed_Environment","Failed_Artifact","Inconclusive","Comment","G1_LTE_UP","G2_LTE_UP","Effectiveness","Stability");
+	headName.l1114 = new Array("Date","Passed","Failed_TR","Failed_Environment","Failed_Artifact","Inconclusive","Comment","G1_LTE_UP","G1_WCDMA_UP","Effectiveness","Stability");
+	headName.l1115 = new Array("Date","Passed","Failed_TR","Failed_Environment","Failed_Artifact","Inconclusive","Comment","G1_LTE_UP","G1_WCDMA_UP","Effectiveness","Stability");
+	
+	seqlist.l1103 = new Array("id","date","passed","failed_TR","failed_Environment","failed_Artifact","inconclusive"," comment"," g1_LTE_UP","g2_MSME_UP","effectiveness","stability");
+	seqlist.l1104 = new Array("id","date","passed","failed_TR","failed_Environment","failed_Artifact","inconclusive"," comment"," g1_LTE_UP","g2_LTE_UP","effectiveness","stability");
+	seqlist.l1114 = new Array("id","date","passed","failed_TR","failed_Environment","failed_Artifact","inconclusive"," comment"," g1_LTE_UP","g1_WCDMA_UP","effectiveness","stability");
+	seqlist.l1115 = new Array("id","date","passed","failed_TR","failed_Environment","failed_Artifact","inconclusive"," comment"," g1_LTE_UP","g1_WCDMA_UP","effectiveness","stability");
+
     //数据，实际情况是从后台获取的，格式json
    $.ajax({
       type: "POST",
       url: "/mavenSSM/testing/getAllList",
+      data:{"table":"1103"},
       dataType: "json",
       success: function(data){
       	jsonObj = data;
           $("#tableArea").createTable(data,{
               rows:10,
               needKey:true,
-              headName:headName,
+              headName:headName.l1103,
               needseqlist: true,
-              seqlist: seqlist,
+              seqlist: seqlist.l1103,
               link: true,
           });
       }
@@ -27,9 +39,13 @@ $(function(){
              if($(this).val()=="All"){
               r=data.length;
              }
-            $("#tableArea").createTable(data,{
-              rows : r
-            });
+             $("#tableArea").createTable(jsonObj,{
+	              rows:10,
+	              needKey:true,
+	              headName:headName['l'+currentTable],
+	              needseqlist: true,
+	              seqlist: seqlist['l'+currentTable],
+	          });
           });
           //实现search：处对应的筛选工作，根据选择框实现显示的对应个数。data[i]是满足条件的对应行。
           $("#inputNumber").bind("input",function(){
@@ -48,8 +64,12 @@ $(function(){
                 }
               }
             $("#tableArea").createTable(temp,{
-              rows : r
-            });
+	              rows:10,
+	              needKey:true,
+	              headName:headName['l'+currentTable],
+	              needseqlist: true,
+	              seqlist: seqlist['l'+currentTable],
+	          });
         });
 
 
@@ -73,20 +93,20 @@ $(function(){
 });
 //获取四张表的data
 function getData(which){
+	currentTable = which
 	$.ajax({
 	      type: "POST",
 	      url: "/mavenSSM/testing/getAllList",
-	      data:which,
+	      data:{"table":which},
 	      dataType: "json",
 	      success:function(data){
 	      	jsonObj = data;
 	          $("#tableArea").createTable(data,{
 	              rows:10,
 	              needKey:true,
-	              headName:headName,
+	              headName:headName['l'+which],
 	              needseqlist: true,
-	              seqlist: seqlist,
-	              link: true,
+	              seqlist: seqlist['l'+which],
 	          });
 	      }
 	    });
@@ -291,15 +311,34 @@ $(function(){
             showError("  G1 LTE UP can not be null !");
             return false;
           }
-
-          var datas = {"id": 0,"date":$inputs[0].value,"passed":$inputs[1].value,"failed_TR":$inputs[2].value,
-        		  "failed_Environment":$inputs[3].value,"failed_Artifact":$inputs[4].value,
-        		  "inconclusive":$inputs[5].value,"comment":$inputs[6].value,"g1_LTE_UP":$inputs[7].value,"g2_MSME_UP":$inputs[8].value,"effectiveness":$inputs[9].value,"stability":$inputs[10].value};
-          
+          var datas = {};
+          switch(currentTable){
+              case "1103":
+    		      datas = {"id": 0,"date":$inputs[0].value,"passed":$inputs[1].value,"failed_TR":$inputs[2].value,
+            		  "failed_Environment":$inputs[3].value,"failed_Artifact":$inputs[4].value,
+            		  "inconclusive":$inputs[5].value,"comment":$inputs[6].value,"g1_LTE_UP":$inputs[7].value,"g2_MSME_UP":$inputs[8].value,"effectiveness":$inputs[9].value,"stability":$inputs[10].value};
+    		      break;
+              case "1104":
+            	  datas = {"id": 0,"date":$inputs[0].value,"passed":$inputs[1].value,"failed_TR":$inputs[2].value,
+            		  "failed_Environment":$inputs[3].value,"failed_Artifact":$inputs[4].value,
+            		  "inconclusive":$inputs[5].value,"comment":$inputs[6].value,"g1_LTE_UP":$inputs[7].value,"g2_MSME_UP":$inputs[8].value,"effectiveness":$inputs[9].value,"stability":$inputs[10].value};
+    		      break;
+              case "1114":
+            	  datas = {"id": 0,"date":$inputs[0].value,"passed":$inputs[1].value,"failed_TR":$inputs[2].value,
+            		  "failed_Environment":$inputs[3].value,"failed_Artifact":$inputs[4].value,
+            		  "inconclusive":$inputs[5].value,"comment":$inputs[6].value,"g1_LTE_UP":$inputs[7].value,"g2_MSME_UP":$inputs[8].value,"effectiveness":$inputs[9].value,"stability":$inputs[10].value};
+    		      break;
+              case "1115":
+            	  datas = {"id": 0,"date":$inputs[0].value,"passed":$inputs[1].value,"failed_TR":$inputs[2].value,
+            		  "failed_Environment":$inputs[3].value,"failed_Artifact":$inputs[4].value,
+            		  "inconclusive":$inputs[5].value,"comment":$inputs[6].value,"g1_LTE_UP":$inputs[7].value,"g2_MSME_UP":$inputs[8].value,"effectiveness":$inputs[9].value,"stability":$inputs[10].value};
+    		      break;
+          }
+        	  
      	  var cpage = parseInt($("#currentPage").val());
           $.ajax({
         	  type:"POST",
-        	  url: "/mavenSSM/testing/addItem",
+        	  url: "/mavenSSM/testing/addItem"+which,
         	  dataType: "json",
         	  data:JSON.stringify(datas),
         	  contentType:"application/json",

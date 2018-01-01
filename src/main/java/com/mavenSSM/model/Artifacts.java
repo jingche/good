@@ -7,9 +7,9 @@ public class  Artifacts {
 
     private String owner;
 
-    private Date started_date;
+    private String started_date;
 
-    private Date finished_date;
+    private String finished_date;
 
     private Integer used_days;
 
@@ -34,19 +34,19 @@ public class  Artifacts {
         this.owner = Owner;
     }
 
-    public Date getStarted_date() {
+    public String getStarted_date() {
         return started_date;
     }
 
-    public void setStarted_date(Date Started_date) {
+    public void setStarted_date(String Started_date) {
         this.started_date = Started_date;
     }
 
-    public  Date getFinished_date() {
+    public  String getFinished_date() {
         return finished_date;
     }
 
-    public void setFinished_date(Date Finished_date) {
+    public void setFinished_date(String Finished_date) {
         this.finished_date = Finished_date;
     }
 

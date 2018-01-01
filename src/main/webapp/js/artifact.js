@@ -32,9 +32,17 @@ $(function(){
              if($(this).val()=="All"){
               r=data.length;
              }
-            $("#tableArea").createTable(data,{
-              rows : r
-            });
+             $("#tableArea").createTable(jsonObj,{
+   			  rows:10,
+   			  needKey:true,
+                 headName:headName,
+                 needseqlist: true,
+                 seqlist: seqlist,
+   			  link:true,
+   			  linkcols:"description",
+   			  linkdata:"https://openalm.lmera.ericsson.se/plugins/tracker/?aid=",
+   		   
+   		 });
           });
 
           $("#inputNumber").bind("input",function(){   
@@ -46,15 +54,23 @@ $(function(){
             var temp = [];
             for(var i = 0;i < jsonObj.length;i++){
               for(x in jsonObj[i]){
-                if(x != "id" && jsonObj[i][x] != null && jsonObj[i][x].indexOf(value) > -1) {
+                if(x != "id" && jsonObj[i][x] != null && (""+jsonObj[i][x]).indexOf(value) > -1) {
                   temp.push(jsonObj[i]);
                   break;
                 }
               }
             }
             $("#tableArea").createTable(temp,{
-              rows : r
-            });
+  			  rows:10,
+  			  needKey:true,
+                headName:headName,
+                needseqlist: true,
+                seqlist: seqlist,
+  			  link:true,
+  			  linkcols:"description",
+  			  linkdata:"https://openalm.lmera.ericsson.se/plugins/tracker/?aid=",
+  		   
+  		 });
         });
 
 });
@@ -224,9 +240,19 @@ $(function(){
          function createEditModel($tr){
                 var $input = $("#EditTable").find("input");
                 var $tds = $tr.find("td");
-                for(var i= 0;i<$tds.length;i++){
+                for(var i= 0;i<4;i++){
                   $($input[i]).val($tds[i].innerText);
                 }
+                //var option = $("#Select2").find("option[text='"+$tds[4].innerText+"']");
+                //$("#Select2").find("option[text='"+$tds[4].innerText+"']").attr("selected",true);
+                var options = $("#editSelect").find("option");
+                for(var i = 0;i < options.length;i++){
+                	if($(options[i]).val().trim() == $tds[4].innerText.trim()){
+                		$(options[i]).prop("selected", true);
+                		break;
+                	}
+                }
+                $($input[4]).val($tds[5].innerText);
          }
 });
 

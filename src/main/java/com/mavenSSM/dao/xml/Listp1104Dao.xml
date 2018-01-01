@@ -20,7 +20,7 @@
   	</resultMap>
   	
   	<select id="getAllLIstp1104" resultMap="listp1104Map">
-  		SELECT id, Date, Passed, Failed_TR,Failed_Environment,Failed_Artifact,Inconclusive,Comment, G1_LTE_UP, G2_LTE_UP,Effectiveness,Stability FROM listp1103
+  		SELECT id, Date, Passed, Failed_TR,Failed_Environment,Failed_Artifact,Inconclusive,Comment, G1_LTE_UP, G2_LTE_UP,Effectiveness,Stability FROM listp1104
   	</select>
   	
   	<insert id="addNewItem" parameterType="com.mavenSSM.model.Listp1104" useGeneratedKeys="true" keyProperty="listp1104.id" keyColumn="id">

@@ -5,7 +5,7 @@ import java.util.Date;
 public class Listp1115 {
     private Integer id;
     
-    private  Date   date;
+    private String date;
  
     private Integer passed;
 
@@ -37,11 +37,11 @@ public class Listp1115 {
         this.id = id;
     }
     
-    public Date getdate() {
+    public String getdate() {
     	return date;
     }
     
-    public void setdate(Date date) {
+    public void setdate(String date) {
     	this.date=date;
     }
 
