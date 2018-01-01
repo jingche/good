@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mavenSSM.model.Listp1103;
+import com.mavenSSM.model.Listp1104;
+import com.mavenSSM.model.Listp1114;
+import com.mavenSSM.model.Listp1115;
 import com.mavenSSM.service.Listp1103Service;
 import com.mavenSSM.service.Listp1104Service;
 import com.mavenSSM.service.Listp1114Service;
@@ -52,21 +55,75 @@ public class Listp1103Controller {
 		return listp1103Service.getAllListp1103();
 	}
 	
-	@RequestMapping(value="/addItem", method=RequestMethod.POST)
+	@RequestMapping(value="/addItem1103", method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Integer> handlerAddItemAjax(@RequestBody Listp1103 list){
+	public Map<String,Integer> handlerAddItem1103Ajax(@RequestBody Listp1103 list){
 		int id = listp1103Service.addNewItem(list);
 		Map<String, Integer>map = new HashMap<>();
 		map.put("id", id);
 		return map;
 	}
 	
-	@RequestMapping(value="/editItem", method=RequestMethod.POST)
+	@RequestMapping(value="/addItem1104", method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Boolean> handlerEditItemAjax(@RequestBody Listp1103 list){
+	public Map<String,Integer> handlerAddItem1104Ajax(@RequestBody Listp1104 list){
+		int id = listp1104Service.addNewItem(list);
+		Map<String, Integer>map = new HashMap<>();
+		map.put("id", id);
+		return map;
+	}
+	
+	@RequestMapping(value="/addItem1114", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Integer> handlerAddItemAjax(@RequestBody Listp1114 list){
+		int id = listp1114Service.addNewItem(list);
+		Map<String, Integer>map = new HashMap<>();
+		map.put("id", id);
+		return map;
+	}
+	
+	@RequestMapping(value="/addItem1115", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Integer> handlerAddItemAjax(@RequestBody Listp1115 list){
+		int id = listp1115Service.addNewItem(list);
+		Map<String, Integer>map = new HashMap<>();
+		map.put("id", id);
+		return map;
+	}
+	
+	@RequestMapping(value="/editItem1103", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Boolean> handlerEditItem1103Ajax(@RequestBody Listp1103 list){
 		Map<String,Boolean> map = new HashMap<>();
 		map.put("success", true);
 		listp1103Service.editItem(list);
+		return map;
+	}
+	
+	@RequestMapping(value="/editItem1104", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Boolean> handlerEditItem1104Ajax(@RequestBody Listp1104 list){
+		Map<String,Boolean> map = new HashMap<>();
+		map.put("success", true);
+		listp1104Service.editItem(list);
+		return map;
+	}
+	
+	@RequestMapping(value="/editItem1114", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Boolean> handlerEditItemAjax(@RequestBody Listp1114 list){
+		Map<String,Boolean> map = new HashMap<>();
+		map.put("success", true);
+		listp1114Service.editItem(list);
+		return map;
+	}
+	
+	@RequestMapping(value="/editItem1115", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Boolean> handlerEditItemAjax(@RequestBody Listp1115 list){
+		Map<String,Boolean> map = new HashMap<>();
+		map.put("success", true);
+		listp1115Service.editItem(list);
 		return map;
 	}
 }

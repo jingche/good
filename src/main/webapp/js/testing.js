@@ -9,10 +9,10 @@ $(function(){
 	headName.l1114 = new Array("Date","Passed","Failed_TR","Failed_Environment","Failed_Artifact","Inconclusive","Comment","G1_LTE_UP","G1_WCDMA_UP","Effectiveness","Stability");
 	headName.l1115 = new Array("Date","Passed","Failed_TR","Failed_Environment","Failed_Artifact","Inconclusive","Comment","G1_LTE_UP","G1_WCDMA_UP","Effectiveness","Stability");
 	
-	seqlist.l1103 = new Array("id","date","passed","failed_TR","failed_Environment","failed_Artifact","inconclusive"," comment"," g1_LTE_UP","g2_MSME_UP","effectiveness","stability");
-	seqlist.l1104 = new Array("id","date","passed","failed_TR","failed_Environment","failed_Artifact","inconclusive"," comment"," g1_LTE_UP","g2_LTE_UP","effectiveness","stability");
-	seqlist.l1114 = new Array("id","date","passed","failed_TR","failed_Environment","failed_Artifact","inconclusive"," comment"," g1_LTE_UP","g1_WCDMA_UP","effectiveness","stability");
-	seqlist.l1115 = new Array("id","date","passed","failed_TR","failed_Environment","failed_Artifact","inconclusive"," comment"," g1_LTE_UP","g1_WCDMA_UP","effectiveness","stability");
+	seqlist.l1103 = new Array("id","date","passed","failed_TR","failed_Environment","failed_Artifact","inconclusive","comment","g1_LTE_UP","g2_MSME_UP","effectiveness","stability");
+	seqlist.l1104 = new Array("id","date","passed","failed_TR","failed_Environment","failed_Artifact","inconclusive","comment","g1_LTE_UP","g2_LTE_UP","effectiveness","stability");
+	seqlist.l1114 = new Array("id","date","passed","failed_TR","failed_Environment","failed_Artifact","inconclusive","comment","g1_LTE_UP","g1_WCDMA_UP","effectiveness","stability");
+	seqlist.l1115 = new Array("id","date","passed","failed_TR","failed_Environment","failed_Artifact","inconclusive","comment","g1_LTE_UP","g1_WCDMA_UP","effectiveness","stability");
 
     //数据，实际情况是从后台获取的，格式json
    $.ajax({
@@ -37,7 +37,7 @@ $(function(){
            $("#selectpage").bind("change",function(){
             var r = parseInt($(this).val());
              if($(this).val()=="All"){
-              r=data.length;
+              r=jsonObj.length;
              }
              $("#tableArea").createTable(jsonObj,{
 	              rows:10,
@@ -57,7 +57,7 @@ $(function(){
             var temp = [];
             for(var i = 0;i < jsonObj.length;i++){
                 for(x in jsonObj[i]){
-                  if(x != "id" && jsonObj[i][x] != null && jsonObj[i][x].indexOf(value) > -1){
+                  if(x != "id" && jsonObj[i][x] != null && (""+jsonObj[i][x]).indexOf(value) > -1){
                     temp.push(jsonObj[i]);
                     break;
                   }
@@ -316,42 +316,42 @@ $(function(){
               case "1103":
     		      datas = {"id": 0,"date":$inputs[0].value,"passed":$inputs[1].value,"failed_TR":$inputs[2].value,
             		  "failed_Environment":$inputs[3].value,"failed_Artifact":$inputs[4].value,
-            		  "inconclusive":$inputs[5].value,"comment":$inputs[6].value,"g1_LTE_UP":$inputs[7].value,"g2_MSME_UP":$inputs[8].value,"effectiveness":$inputs[9].value,"stability":$inputs[10].value};
+            		  "inconclusive":$inputs[5].value,"comment":$("#comment1").val(),"g1_LTE_UP":$inputs[6].value,"g2_MSME_UP":$inputs[7].value,"effectiveness":$inputs[8].value,"stability":$inputs[9].value};
     		      break;
               case "1104":
             	  datas = {"id": 0,"date":$inputs[0].value,"passed":$inputs[1].value,"failed_TR":$inputs[2].value,
             		  "failed_Environment":$inputs[3].value,"failed_Artifact":$inputs[4].value,
-            		  "inconclusive":$inputs[5].value,"comment":$inputs[6].value,"g1_LTE_UP":$inputs[7].value,"g2_MSME_UP":$inputs[8].value,"effectiveness":$inputs[9].value,"stability":$inputs[10].value};
+            		  "inconclusive":$inputs[5].value,"comment":$("#comment1").val(),"g1_LTE_UP":$inputs[6].value,"g2_LTE_UP":$inputs[7].value,"effectiveness":$inputs[8].value,"stability":$inputs[9].value};
     		      break;
               case "1114":
             	  datas = {"id": 0,"date":$inputs[0].value,"passed":$inputs[1].value,"failed_TR":$inputs[2].value,
             		  "failed_Environment":$inputs[3].value,"failed_Artifact":$inputs[4].value,
-            		  "inconclusive":$inputs[5].value,"comment":$inputs[6].value,"g1_LTE_UP":$inputs[7].value,"g2_MSME_UP":$inputs[8].value,"effectiveness":$inputs[9].value,"stability":$inputs[10].value};
+            		  "inconclusive":$inputs[5].value,"comment":$("#comment1").val(),"g1_LTE_UP":$inputs[6].value,"g1_WCDMA_UP":$inputs[7].value,"effectiveness":$inputs[8].value,"stability":$inputs[9].value};
     		      break;
               case "1115":
             	  datas = {"id": 0,"date":$inputs[0].value,"passed":$inputs[1].value,"failed_TR":$inputs[2].value,
             		  "failed_Environment":$inputs[3].value,"failed_Artifact":$inputs[4].value,
-            		  "inconclusive":$inputs[5].value,"comment":$inputs[6].value,"g1_LTE_UP":$inputs[7].value,"g2_MSME_UP":$inputs[8].value,"effectiveness":$inputs[9].value,"stability":$inputs[10].value};
+            		  "inconclusive":$inputs[5].value,"comment":$("#comment1").val(),"g1_LTE_UP":$inputs[6].value,"g1_WCDMA_UP":$inputs[7].value,"effectiveness":$inputs[8].value,"stability":$inputs[9].value};
     		      break;
           }
         	  
      	  var cpage = parseInt($("#currentPage").val());
           $.ajax({
         	  type:"POST",
-        	  url: "/mavenSSM/testing/addItem"+which,
+        	  url: "/mavenSSM/testing/addItem"+currentTable,
         	  dataType: "json",
         	  data:JSON.stringify(datas),
         	  contentType:"application/json",
         	  success:function(data){
         		  datas.id = data.id;
         		  jsonObj.push(datas);
+        		  
         		  $("#tableArea").createTable(jsonObj,{
         			  rows:10,
                       needKey:true,
-                      headName:headName,
+                      headName:headName["l"+currentTable],
                       needseqlist: true,
-                      seqlist: seqlist,
-                      link: true,
+                      seqlist: seqlist["l"+currentTable],
                       pages:cpage
                   });
         		  //  验证完后ajax,最后把$("#cancelButton").click(),写入ajax的success中
@@ -368,15 +368,35 @@ $(function(){
           $("#editError").text("").hide();
           $("#editdate3").trigger(" blur");
           var $inputs= $("#EditTable").find("input");
-          var datas = {"id": $("#editID").val(),"date":$inputs[0].value,"passed":$inputs[1].value,"failed_TR":$inputs[2].value,
-        		  "failed_Environment":$inputs[3].value,"failed_Artifact":$inputs[4].value,
-        		  "inconclusive":$inputs[5].value,"comment":$inputs[6].value,"g1_LTE_UP":$inputs[7].value,"g2_MSME_UP":$inputs[8].value,"effectiveness":$inputs[9].value,"stability":$inputs[10].value};
-
+          var datas = {};
+          switch(currentTable){
+              case "1103":
+            	  datas = {"id": $("#editID").val(),"date":$inputs[0].value,"passed":$inputs[1].value,"failed_TR":$inputs[2].value,
+            		  "failed_Environment":$inputs[3].value,"failed_Artifact":$inputs[4].value,
+            		  "inconclusive":$inputs[5].value,"comment":$("#editcomment1").val(),"g1_LTE_UP":$inputs[6].value,"g2_MSME_UP":$inputs[7].value,"effectiveness":$inputs[8].value,"stability":$inputs[9].value};
+            	  break;
+              case "1104":
+            	  datas = {"id": $("#editID").val(),"date":$inputs[0].value,"passed":$inputs[1].value,"failed_TR":$inputs[2].value,
+            		  "failed_Environment":$inputs[3].value,"failed_Artifact":$inputs[4].value,
+            		  "inconclusive":$inputs[5].value,"comment":$("#editcomment1").val(),"g1_LTE_UP":$inputs[6].value,"g2_LTE_UP":$inputs[7].value,"effectiveness":$inputs[8].value,"stability":$inputs[9].value};
+            	  break;
+              case "1114":
+            	  datas = {"id": $("#editID").val(),"date":$inputs[0].value,"passed":$inputs[1].value,"failed_TR":$inputs[2].value,
+            		  "failed_Environment":$inputs[3].value,"failed_Artifact":$inputs[4].value,
+            		  "inconclusive":$inputs[5].value,"comment":$("#editcomment1").val(),"g1_LTE_UP":$inputs[6].value,"g1_WCDMA_UP":$inputs[7].value,"effectiveness":$inputs[8].value,"stability":$inputs[9].value};
+            	  break;
+              case "1115":
+            	  datas = {"id": $("#editID").val(),"date":$inputs[0].value,"passed":$inputs[1].value,"failed_TR":$inputs[2].value,
+            		  "failed_Environment":$inputs[3].value,"failed_Artifact":$inputs[4].value,
+            		  "inconclusive":$inputs[5].value,"comment":$("#editcomment1").val(),"g1_LTE_UP":$inputs[6].value,"g1_WCDMA_UP":$inputs[7].value,"effectiveness":$inputs[8].value,"stability":$inputs[9].value};
+            	  break;
+          }
+         
         //验证完后ajax,最后把$("#cancelButton").click(),写入ajax的success中
           var cpage = parseInt($("#currentPage").val());
           $.ajax({
         	  type: "POST",
-        	  url: "/mavenSSM/testing/editItem",
+        	  url: "/mavenSSM/testing/editItem"+currentTable,
         	  data: JSON.stringify(datas),
         	  contentType:"application/json",
         	  dataType: "json",
@@ -385,10 +405,9 @@ $(function(){
         		  $("#tableArea").createTable(jsonObj,{
         			  rows:10,
                       needKey:true,
-                      headName:headName,
+                      headName:headName["l"+currentTable],
                       needseqlist: true,
-                      seqlist: seqlist,
-                      link: true,
+                      seqlist: seqlist["l"+currentTable],
                       pages:cpage
                   });
         		  $("#cancelEdit").click();
@@ -398,6 +417,15 @@ $(function(){
      });
 
 });
+
+function changeItem(data){
+	for(var i = 0;i < jsonObj.length;i++){
+		if(jsonObj[i].id == data.id){
+			jsonObj[i] = data;
+			break;
+		}
+	}
+}
 /*
 点击edit按钮之后，当点击table中的任意一个th都会跳出edit窗口实现编辑功能。点击完edit按钮，使add按钮隐藏，edit按钮隐藏，closeEdit显示。
 “#tablearea”是表示点击的任意的th区域，“#newGroup”是add按钮的id,"#closeEdit"是closeedit按钮的id。
