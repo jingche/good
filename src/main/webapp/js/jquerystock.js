@@ -126,8 +126,8 @@ function createChart(which){
 
 			            column: {
 			                stacking: 'normal',
-			                enableMouseTracking:false,
-			                minPointLength: 2,
+			                enableMouseTracking:true,//这个就是控制鼠标是否放置上面可以看到个数的
+			                minPointLength:2,
 			                tooltip: {
 			                  /*headerFormat: '<b>{point.x}</b><br/>',
 			                  pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'*/
@@ -276,7 +276,7 @@ function createChart(which){
 			               ]]
 			           },
 			              tooltip: {
-			                  valueSuffix: ' amount'
+			                  valueSuffix: ' '
 			              }
 			          }, {
 			              name: 'Failed TR',
@@ -295,7 +295,7 @@ function createChart(which){
 			               ]]
 			           },
 			              tooltip: {
-			                  valueSuffix: ' amount'
+			                  valueSuffix: ' '
 			              }
 
 			          }, {
@@ -315,7 +315,7 @@ function createChart(which){
 			               ]]
 			           },
 			              tooltip: {
-			                  valueSuffix: ' amount'
+			                  valueSuffix: ' '
 			              }
 
 			          },{
@@ -335,7 +335,7 @@ function createChart(which){
 			               ]]
 			           },
 			              tooltip: {
-			                  valueSuffix: ' amount'
+			                  valueSuffix: ' '
 			              }
 
 			          }, {
@@ -458,6 +458,7 @@ function createChart(which){
 
 $(function () {
 	createChart("1103");
+	
     $("#buttonArea div").bind("click",function(){
     	createChart($(this).text().substring(5,9));
     	$(this).siblings().removeClass("active1");

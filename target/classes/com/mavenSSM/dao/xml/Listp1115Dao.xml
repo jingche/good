@@ -23,7 +23,7 @@
   		SELECT id, Date, Passed, Failed_TR,Failed_Environment,Failed_Artifact,Inconclusive,Comment, G1_LTE_UP,G1_WCDMA_UP,Effectiveness,Stability FROM listp1115
   	</select>
   	
-  	<insert id="addNewItem" parameterType="com.mavenSSM.model.Listp1114" useGeneratedKeys="true" keyProperty="listp1115.id" keyColumn="id">
+  	<insert id="addNewItem" parameterType="com.mavenSSM.model.Listp1115" useGeneratedKeys="true" keyProperty="listp1115.id" keyColumn="id">
   		INSERT INTO listp1115(Date, Passed, Failed_TR,Failed_Environment,Failed_Artifact,Inconclusive,Comment, G1_LTE_UP,G1_WCDMA_UP,Effectiveness,Stability) 
   		VALUES(#{listp1115.date}, #{listp1115.passed}, #{listp1115.failed_TR},#{listp1115.failed_Environment},
   		#{listp1115.failed_Artifact},#{listp1115.inconclusive},#{listp1115.comment},#{listp1115.g1_LTE_UP},#{listp1115.g1_WCDMA_UP},#{listp1115.effectiveness},#{listp1115.stability})

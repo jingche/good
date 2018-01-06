@@ -1,5 +1,5 @@
 var jsonObj = null;
-var headName = {}
+var headName = {};
 var seqlist = {};
 var currentTable = '1103';
 
@@ -86,14 +86,14 @@ $(function(){
       var tableTh=$("#example thead th");
       var addTh=$("#addGroup th");
       for(var i=0;i<addTh.length;i++){
-         $(addTh[i]).text($(tableTh[i]).text());
+         $(addTh[i]).text($(tableTh[i]).text() + ":");
       }
   });
 
 });
 //获取四张表的data
 function getData(which){
-	currentTable = which
+	currentTable = which;
 	$.ajax({
 	      type: "POST",
 	      url: "/mavenSSM/testing/getAllList",
@@ -110,97 +110,7 @@ function getData(which){
 	          });
 	      }
 	    });
-    /*
-    $.ajax({
-      type:"post",
-      url:"",
-      data:"which":which,
-      dataType:"",
-      success: function(data){
-          createTable(data);
-    }
-
-
-  });
    
-
-    var data=[];
-    switch(which){
-      case "1103":
-       data=[{"Date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
- ,"G1 LTE UP":" CXP9024418_6-R24A52","G2 MSME UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
- ,"G1 LTE UP":" CXP9024418_6-R24A52","G2 MSME UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
- ,"G1 LTE UP":" CXP9024418_6-R24A52","G2 MSME UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
- ,"G1 LTE UP":" CXP9024418_6-R24A52","G2 MSME UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
- ,"G1 LTE UP":" CXP9024418_6-R24A52","G2 MSME UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState sdh jhdj jhdj jshwe jhfjjhkk hejh"
- ,"G1 LTE UP":" CXP9024418_6-R24A52","G2 MSME UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"}, {"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
- ,"G1 LTE UP":" CXP9024418_6-R24A52","G2 MSME UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
- ,"G1 LTE UP":" CXP9024418_6-R24A52","G2 MSME UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
- ,"G1 LTE UP":" CXP9024418_6-R24A52","G2 MSME UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
- ,"G1 LTE UP":" CXP9024418_6-R24A52","G2 MSME UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
- ,"G1 LTE UP":" CXP9024418_6-R24A52","G2 MSME UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
- ,"G1 LTE UP":" CXP9024418_6-R24A52","G2 MSME UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
- ,"G1 LTE UP":" CXP9024418_6-R24A52","G2 MSME UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
- ,"G1 LTE UP":" CXP9024418_6-R24A52","G2 MSME UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"}];
-
-      break;
-      case "1104":
-        data=[{"Date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-  ,"G1 LTE UP":" CXP9024418_6-R24A52","G2 LTE UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-  ,"G1 LTE UP":" CXP9024418_6-R24A52","G2 LTE  UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-  ,"G1 LTE UP":" CXP9024418_6-R24A52","G2 LTE UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-  ,"G1 LTE UP":" CXP9024418_6-R24A52","G2 LTE UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-  ,"G1 LTE UP":" CXP9024418_6-R24A52","G2 LTE UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState sdh jhdj jhdj jshwe jhfjjhkk hejh"
-  ,"G1 LTE UP":" CXP9024418_6-R24A52","G2 LTE UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"}, {"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-  ,"G1 LTE UP":" CXP9024418_6-R24A52","G2 LTE UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-  ,"G1 LTE UP":" CXP9024418_6-R24A52","G2 LTE UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-  ,"G1 LTE UP":" CXP9024418_6-R24A52","G2 LTE UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-  ,"G1 LTE UP":" CXP9024418_6-R24A52","G2 LTE UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-  ,"G1 LTE UP":" CXP9024418_6-R24A52","G2 LTE UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-  ,"G1 LTE UP":" CXP9024418_6-R24A52","G2 LTE UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-  ,"G1 LTE UP":" CXP9024418_6-R24A52","G2 LTE UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-  ,"G1 LTE UP":" CXP9024418_6-R24A52","G2 LTE UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"}];
-
-      break;
-      case "1114":
-      data=[{"Date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-,"G1 LTE UP":" CXP9024418_6-R24A52","G1 WCDMA UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-,"G1 LTE UP":" CXP9024418_6-R24A52","G1 WCDMA UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-,"G1 LTE UP":" CXP9024418_6-R24A52","G1 WCDMA UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-,"G1 LTE UP":" CXP9024418_6-R24A52","G1 WCDMA UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-,"G1 LTE UP":" CXP9024418_6-R24A52","G1 WCDMA UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState sdh jhdj jhdj jshwe jhfjjhkk hejh"
-,"G1 LTE UP":" CXP9024418_6-R24A52","G1 WCDMA UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"}, {"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-,"G1 LTE UP":" CXP9024418_6-R24A52","G1 WCDMA UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-,"G1 LTE UP":" CXP9024418_6-R24A52","G1 WCDMA UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-,"G1 LTE UP":" CXP9024418_6-R24A52","G1 WCDMA UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-,"G1 LTE UP":" CXP9024418_6-R24A52","G1 WCDMA UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-,"G1 LTE UP":" CXP9024418_6-R24A52","G1 WCDMA UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-,"G1 LTE UP":" CXP9024418_6-R24A52","G1 WCDMA UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-,"G1 LTE UP":" CXP9024418_6-R24A52","G1 WCDMA UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-,"G1 LTE UP":" CXP9024418_6-R24A52","G1 WCDMA UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"}];
-      break;
-      case "1115":
-      data=[{"Date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-,"G1 LTE UP":" CXP9024418_6-R24A52","G1 WCDMA UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-,"G1 LTE UP":" CXP9024418_6-R24A52","G1 WCDMA UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-,"G1 LTE UP":" CXP9024418_6-R24A52","G1 WCDMA UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-,"G1 LTE UP":" CXP9024418_6-R24A52","G1 WCDMA UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-,"G1 LTE UP":" CXP9024418_6-R24A52","G1 WCDMA UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState sdh jhdj jhdj jshwe jhfjjhkk hejh"
-,"G1 LTE UP":" CXP9024418_6-R24A52","G1 WCDMA UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"}, {"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-,"G1 LTE UP":" CXP9024418_6-R24A52","G1 WCDMA UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-,"G1 LTE UP":" CXP9024418_6-R24A52","G1 WCDMA UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-,"G1 LTE UP":" CXP9024418_6-R24A52","G1 WCDMA UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-,"G1 LTE UP":" CXP9024418_6-R24A52","G1 WCDMA UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-,"G1 LTE UP":" CXP9024418_6-R24A52","G1 WCDMA UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-,"G1 LTE UP":" CXP9024418_6-R24A52","G1 WCDMA UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-,"G1 LTE UP":" CXP9024418_6-R24A52","G1 WCDMA UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"},{"date":" 2017/08/09", "Passed":"7 ","Failed TR":"4", " Failed Environment":"8", "Failed Artifact":"4", "Inconclusive":"1", "Comment":"[NCMAIN repo][test-rbsnc project]: make UpgradeWithCpriBreakTest choose test focus UP as its upToState"
-,"G1 LTE UP":" CXP9024418_6-R24A52","G1 WCDMA UP":"CXP9024418_6-R24A52","Effectiveness":"20%","Stability":"10%"}];
-       break;
-       default:
-       return false;
-    }
-    createTable(data);
- */
 }
 //which是选择的下拉菜单中的1103,1104,1114,1115
 $(function(){
