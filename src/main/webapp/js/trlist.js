@@ -26,9 +26,9 @@ $(function(){
            $("#selectpage").bind("change",function(){
             var r = parseInt($(this).val());
               if($(this).val()=="All"){
-              r=parseInt(data.length);
+              r=parseInt(jsonObj.length);
               }
-            $("#tableArea").createTable(data,{
+            $("#tableArea").createTable(jsonObj,{
               rows : r
 
             });
@@ -77,6 +77,11 @@ $(function(){
 });
 
 $(function(){
+	  //让cancel按钮实现清空输入框的结果
+	 $("#cancelButton").bind("click",function(){
+		$("#addGroup").find("input").val(""); 
+		resetSelect($("#Select2"));
+	 });
      $("#sureAdd").bind("click",function(){
           $("#addError").text("").hide();
           $("#time3").trigger(" blur");
@@ -85,25 +90,25 @@ $(function(){
             showError("Eriref can not be null !");
             return false;
           }
-          else if($inputs[1].value== ""){
+          else if($inputs[1].value == ""){
             showError("Registerded by can not be null !");
             return false;
           }
-         else  if($inputs[2].value== ""){
+         else  if($inputs[2].value == ""){
             showError("Registerded date can not be null !");
             return false;
           }
-          else if($inputs[4].value== ""){
+          else if($inputs[4].value == ""){
             showError(" Turnaround Time can not be null !");
             return false;
           }
-          else if($inputs[7].value== ""){
+          else if($inputs[6].value == ""){
             showError(" Heading can not be null !");
             return false;
           }
           var datas = {"id": 0,"eriref":$inputs[0].value,"registered_by":$inputs[1].value,"registered_date":$inputs[2].value,
         		  "finished_date":$inputs[3].value,"turnaround_time":$inputs[4].value,
-        		  "answer_code":$inputs[5].value,"valid":$inputs[6].value,"heading":$inputs[7].value};
+        		  "answer_code":$inputs[5].value,"valid":$("#Select2").find(':selected').text(),"heading":$inputs[6].value};
           
      	  var cpage = parseInt($("#currentPage").val());
           $.ajax({
@@ -128,6 +133,8 @@ $(function(){
                   });
         		  $("#cancelButton").click();
         		  $("#addGroup").find("input").val("");
+        		  resetSelect($("#Select2"));
+        		   
         	  }
           });
          
@@ -140,7 +147,7 @@ $(function(){
           var $inputs= $("#EditTable").find("input");
           var datas = {"id": $("#editID").val(),"eriref":$inputs[0].value,"registered_by":$inputs[1].value,"registered_date":$inputs[2].value,
         		  "finished_date":$inputs[3].value,"turnaround_time":$inputs[4].value,
-        		  "answer_code":$inputs[5].value,"valid":$inputs[6].value,"heading":$inputs[7].value};
+        		  "answer_code":$inputs[5].value,"valid":$("#editSelect").find(':selected').text(),"heading":$inputs[7].value};
           /*var $inputs =$("#EditTable").find("input");
           if($inputs[0].value== ""){
             showError("Eriref can not be null !");
@@ -272,4 +279,14 @@ $(function(){
             parseInt(t[1], 10) || null,
             parseInt(t[2], 10) || null
             )).getTime();
+        }
+        
+function resetSelect($select){
+        	var parent = $select.parent();
+        	parent.empty().append('<select id="Select2" name="officeSelect" class="form-control office" style=" border-radius: 4px;'+
+                                     'border:1px solid #337ab7;width:300px">'+
+                                         '<option value="" selected="selected"></option>'+
+                                         '<option value="YES">YES</option>'+
+                                         '<option value="NO">NO</option>'+
+                                   '</select>');
         }

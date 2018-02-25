@@ -40,7 +40,7 @@ $(function(){
               r=jsonObj.length;
              }
              $("#tableArea").createTable(jsonObj,{
-	              rows:10,
+	              rows:r,
 	              needKey:true,
 	              headName:headName['l'+currentTable],
 	              needseqlist: true,
@@ -187,6 +187,12 @@ function calAve (sum,passed){
 这是一个验证输入合法的过程
 */
 $(function(){
+	 //让cancel按钮实现清空输入框和textarea框的结果 
+		 $("#cancelButton").bind("click",function(){ 
+			 $("#addGroup").find("input").val(""); 
+	 	     $("#addGroup").find("textarea").val(""); 
+	 	 }); 
+
      $("#sureAdd").bind("click",function(){
           $("#addError").text("").hide();
           //$("#editdate3").trigger(" blur");

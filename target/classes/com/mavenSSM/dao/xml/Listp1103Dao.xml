@@ -30,7 +30,7 @@
   	</insert>
 	
 	<update id="editItem" >
-		update  LISTP1103 SET 
+		update  LISTP1103  SET
 		Date=#{list.date}, 
 		Passed=#{list.passed}, 
 		Failed_TR=#{list.failed_TR},

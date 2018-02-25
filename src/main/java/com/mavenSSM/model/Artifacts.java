@@ -11,7 +11,7 @@ public class  Artifacts {
 
     private String finished_date;
 
-    private Integer used_days;
+    private String used_days;
 
     private String category;
 
@@ -50,11 +50,11 @@ public class  Artifacts {
         this.finished_date = Finished_date;
     }
 
-    public Integer getUsed_days() {
+    public String getUsed_days() {
         return  used_days;
     }
 
-    public void setUsed_days(Integer  Used_days) {
+    public void setUsed_days(String Used_days) {
         this. used_days =  Used_days;
     }
 

@@ -9,6 +9,7 @@ function createChart(which){
 			  var date2 = [];
 			  var date3 = [];
 			  var date4 = [];
+			  var date5 = [];
 			  var line1 = [];
 			  var line2 = [];
 			  var line3 = [];
@@ -18,31 +19,36 @@ function createChart(which){
 				  var year = parseInt(time[0]);
 				  var month = parseInt(time[1]);
 				  var day = parseInt(time[2]);
-				  date1.push([Date.UTC(year,month,day),parseInt(data[i].passed)]);
-				  date2.push([Date.UTC(year,month,day),parseInt(data[i].failed_TR)]);
-				  date3.push([Date.UTC(year,month,day),parseInt(data[i].failed_Environment)]);
-				  date4.push([Date.UTC(year,month,day),parseInt(data[i].failed_Artifact)]);
-				  line1.push([Date.UTC(year,month,day),parseFloat(data[i].effectiveness)]);
-				  line2.push([Date.UTC(year,month,day),parseFloat(data[i].stability)]);
+				  date1.push([Date.UTC(year,month-1,day),parseInt(data[i].passed)]);
+				  date2.push([Date.UTC(year,month-1,day),parseInt(data[i].failed_TR)]);
+				  date3.push([Date.UTC(year,month-1,day),parseInt(data[i].failed_Environment)]);
+				  date4.push([Date.UTC(year,month-1,day),parseInt(data[i].failed_Artifact)]);
+				  date5.push([Date.UTC(year,month-1,day),parseInt(data[i].inconclusive)]);
+				  line1.push([Date.UTC(year,month-1,day),parseFloat(data[i].effectiveness)]);
+				  line2.push([Date.UTC(year,month-1,day),parseFloat(data[i].stability)]);
 			  }
 			  $('#edu2').empty();
 			  $('#edu2').highcharts('StockChart',{
 			       chart:{
 			            /*zoomType:'x',*/
-
+			    	    alignTicks: true,
 			            lang:{
 			                 rangeSelectorZoom:'Time'
 			            }
 			         },
 			      title:{
-			        text:'LISTP' + which + ' Result'
+			        text:'LISTP' + which + ' Result',
+			        style:{
+			        	fontSize:"21px",
+			        	fontWeight:"bold"
+			        }
 			       },
 
-			      xAxis:[{
+			     xAxis: [{
 
 			            /*tickInterval: 7 * 24 * 3600 * 1000, // 坐标轴刻度间隔为一星期
 			                tickWidth: 0,
-			                gridLineWidth: 1,
+			                //gridLineWidth: 1,
 			                labels: {
 			                    align: 'left',
 			                    x: 3,
@@ -51,9 +57,10 @@ function createChart(which){
 			                // 时间格式化字符
 			                // 默认会根据当前的刻度间隔取对应的值，即当刻度间隔为一周时，取 week 值
 			                dateTimeLabelFormats: {
-			                    week: '%Y-%m-%d'
+			                    month: '%b \'%y'
+			                    	//'%Y-%m'
 			                },*/
-			            crosshair:true,
+			            crosshair:false,
 
 
 			    }],
@@ -77,6 +84,7 @@ function createChart(which){
 
 			                   style: {
 			                       color: '#000',
+			                        
 			                       /*tickPositions: [0, 20, 50, 100],*/
 			                   },
 
@@ -84,7 +92,8 @@ function createChart(which){
 			               title: {
 			                   text: 'percent',
 			                   style: {
-			                       color: '#000'
+			                       color: '#000',
+			                       fontSize:"21px"
 			                   }
 			               },
 			               opposite: true
@@ -94,6 +103,7 @@ function createChart(which){
 			                   text: 'amount',
 			                   style: {
 			                       color: '#000',
+			                       fontSize:"21px"
 			                       /*tickInterval:[0,20%,40%,60%,80%,100%],*/
 			                   }
 			               },
@@ -141,7 +151,7 @@ function createChart(which){
 
 			             },
 			           line:{
-			                minPointLength: 2,
+			                minPointLength: 1,
 			                 dataLabels:{
 			                    enabled:false,
 			                    formatter:function(){
@@ -176,6 +186,7 @@ function createChart(which){
 			               height: 10,
 			               allButtonsEnabled:true,
 			               inputEnabled:true,
+			                
 			             buttons: [{
 			                   type: 'month',
 			                   count: 1,
@@ -235,7 +246,7 @@ function createChart(which){
 			               },
 
 
-
+			             
 			             selected: 1
 			           },
 			        scrollbar: {
@@ -261,7 +272,7 @@ function createChart(which){
 			           },
 			        series: [{
 			              name: 'passed',
-			              color: '#4572A7',
+			              color: '#009100',
 			              type: 'column',
 			              yAxis: 1,
 			                //data: [0, 31.5, 10.4, 12.2, 14.0, 76.0, 35.6, 48.5, 16.4, 94.1, 65.6, 54.4,28,55],
@@ -280,7 +291,7 @@ function createChart(which){
 			              }
 			          }, {
 			              name: 'Failed TR',
-			              color: '#7772A7',
+			              color: '#EA0000',
 			              type: 'column',
 			              yAxis: 1,
 			              //data: [42, 31.5, 10.4, 29.2, 44.0, 17.0, 35.6, 48.5, 20.4, 19.1, 45.6, 54.4,44,26],
@@ -300,7 +311,7 @@ function createChart(which){
 
 			          }, {
 			              name: 'Failed Environment',
-			              color: '#000',
+			              color: '#FF9900',
 			              type: 'column',
 			              yAxis: 1,
 			              //data: [41.9, 31.5, 18.4, 14.2, 44.0, 16.0, 35.6, 48.5, 21.4, 14.1, 65.6, 34.4,18,25],
@@ -320,7 +331,7 @@ function createChart(which){
 
 			          },{
 			              name: 'Failed Artifact',
-			              color: '#0F0',
+			              color: '#005AB5', 
 			              type: 'column',
 			              yAxis: 1,
 			              //data: [20, 31.5, 16.4, 29.2, 14.0, 17.0, 15.6, 18.5, 26.4, 19.1, 35.6, 24.4,36,33],
@@ -338,12 +349,33 @@ function createChart(which){
 			                  valueSuffix: ' '
 			              }
 
+			          },{
+			              name: 'Inconclusive',
+			              color: '#66009D', 
+			              type: 'column',
+			              yAxis: 1,
+			              //data: [20, 31.5, 16.4, 29.2, 14.0, 17.0, 15.6, 18.5, 26.4, 19.1, 35.6, 24.4,36,33],
+			              data:date5,
+			              dataGrouping: {
+			               units: [[
+			                   'week', // unit name
+			                   [1] // allowed multiples
+			               ], [
+			                   'month',
+			                   [1, 2, 3, 4, 6]
+			               ]]
+			           },
+			              tooltip: {
+			                  valueSuffix: ' '
+			              }
+
 			          }, {
 			              name: 'Effectiveness',
-			              color: '#3498DB',
+			              color: '#66114E',
 			              type: 'line',
 			              //data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9 ,9.6,34],
 			              data:line1,
+			              visible:false,
 			              dataGrouping: {
 			               units: [[
 			                   'week', // unit name
@@ -360,7 +392,7 @@ function createChart(which){
 			              }
 			          }, {
 			              name: 'Stability',
-			              color: '#66114E',
+			              color: '#000079',
 			              type: 'line',
 			              //data: [8, 9, 11, 14.5, 35, 33, 55, 67, 36, 44, 37,20,56],
 			              data:line2,
@@ -460,9 +492,13 @@ $(function () {
 	createChart("1103");
 	
     $("#buttonArea div").bind("click",function(){
-    	createChart($(this).text().substring(5,9));
+    	var which = $(this).text().substring(5,9);
+    	createChart(which);
     	$(this).siblings().removeClass("active1");
     	$(this).addClass("active1");
+    	//$("#('picture'+$(this).text().substring(5,9))").show();
+    	//$(this).siblings().hide();
+    	 $(".picture"+which).show().siblings().hide();
     });
 
 });

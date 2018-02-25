@@ -21,7 +21,7 @@
   	
   	<insert id="addNewItem" parameterType="com.mavenSSM.model.Artifacts" useGeneratedKeys="true" keyProperty="artifacts.id" keyColumn="id">
   		INSERT INTO artifacts(Owner, Started_date, Finished_date, Used_days, Category, Description ) 
-  		VALUES(#{artifacts.owner}, #{artifacts.started_date}, #{artifacts.finished_date},#{artifacts.used_days},
+  		VALUES(#{artifacts.owner}, #{artifacts.started_date}, #{artifacts.finished_date,jdbcType=DATE},#{artifacts.used_days},
   		#{artifacts.category},#{artifacts.description})
   	</insert>
 	

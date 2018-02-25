@@ -18,6 +18,9 @@ public class TRListService {
 	}
 	
 	public int addNewItem(Trlist trlist){
+		final String finishTime = trlist.getFinished_date();
+		if(finishTime == "")
+			trlist.setFinished_date(null);
 		listDao.addNewItem(trlist);
 		return trlist.getId();
 	}

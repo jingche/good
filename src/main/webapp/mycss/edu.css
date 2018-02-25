@@ -26,3 +26,67 @@
 .wrk-title{
   cursor:pointer;
 }
+
+.picture1103{
+  width:100%;
+  overflow:hidden;
+  background:#fff;
+
+
+}
+.picture_left .p_left {
+  padding-top:85px;
+  padding-left: 20px;
+  font-family:serif;
+  font-weight:bold;
+  color:#3498DB;
+}
+.picture_right .p_right {
+  padding-top:85px;
+  padding-bottom:5px;
+  color:#3498DB;
+  font-family:serif;
+  font-weight:bold;
+}
+
+.picture_left, .picture_right {
+
+       font-size: 21px;
+       font-weight:bold;
+       float:left;
+}
+.picture_left {
+  //padding:0px 0px 15px;
+  width:50%;
+  margin-left:15px;
+}
+ .picture_right {
+       margin-left:10px;
+       width:650px;
+}
+.p_right input {
+  background-color:#3498DB;
+  border:1px solid transparent;
+  border-radius:4px;
+  float:right;
+  padding:0px 10px;
+  font-size: 21px;
+  font-family:serif;
+}
+ textarea {
+  width:645px;
+  height:450px;
+  overflow: auto;
+  padding:0px 0px 15px;
+  resize:none;
+  border:1px solid transparent;
+  border-radius: 4px;
+  outline:none;
+  font-weight:bold;
+  font-size:17px;
+  color:black;
+}
+
+.toHidden{
+	display: none;
+}

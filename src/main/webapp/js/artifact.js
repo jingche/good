@@ -1,5 +1,6 @@
+//artifacts和TR-list部分的实现过程基本一致，除了一个下拉框的实现有点不一样，相应更改的部分备有适当的注释
 var jsonObj = null;
-var headName = new Array("Owner","Started date","Finished date","Used days","Category","Description");
+var headName = new Array("Owner","Started date","Finished date","Used days","Category","Aid");
 var seqlist = new Array("id","owner","started_date","finished_date","used_days","category","description");
 $(function(){
     //数据，实际情况是从后台获取的，格式json
@@ -30,25 +31,25 @@ $(function(){
            $("#selectpage").bind("change",function(){
             var r = parseInt($(this).val());
              if($(this).val()=="All"){
-              r=data.length;
+              r=jsonObj.length;
              }
              $("#tableArea").createTable(jsonObj,{
-   			  rows:10,
-   			  needKey:true,
+   			     rows:r,
+   			     needKey:true,
                  headName:headName,
                  needseqlist: true,
                  seqlist: seqlist,
-   			  link:true,
-   			  linkcols:"description",
-   			  linkdata:"https://openalm.lmera.ericsson.se/plugins/tracker/?aid=",
+   			     link:true,
+   			     linkcols:"description",
+   			     linkdata:"https://openalm.lmera.ericsson.se/plugins/tracker/?aid=",
    		   
    		 });
-          });
+      });
 
           $("#inputNumber").bind("input",function(){   
             var  r=parseInt($("#selectpage").val());
               if($("#selectpage").val()=="All"){
-               r= parseInt(jsonObj.length) ;
+                 r= parseInt(jsonObj.length);
               }
             var value = $(this).val();
             var temp = [];
@@ -96,6 +97,14 @@ $(function(){
 
 });
 $(function(){
+	//让cancel按钮实现清空输入框和选择框的结果
+	   $("#cancelButton").bind("click",function(){
+  	   $("#addGroup").find("input").val("");
+  	   resetSelect($("#Select2"));
+  	 //$("#Select2 option:eq(0)").attr("selected",true);
+      });
+		 
+	
      $("#sureAdd").bind("click",function(){
           $("#addError").text("").hide();
           $("#time3").trigger(" blur");
@@ -142,11 +151,14 @@ $(function(){
                       linkdata: "https://openalm.lmera.ericsson.se/plugins/tracker/?aid=",
                       pages:cpage
         		  });
-        		    $("#Select2 option:eq(0)").attr("selected", true);
+ 
+        		    
         		//  验证完后ajax,最后把$("#cancelButton").click(),写入ajax的success中
         	         $("#cancelButton").click();
         	         
         	       //成功提交后切换模态框数据
+        	         //$("#Select2 option:eq(0)").attr("selected",true);
+        	         resetSelect($("#Select2"));
         	         $("#addGroup").find("input").val("");
         	  }
         	  
@@ -178,7 +190,7 @@ $(function(){
             return false;
           }*/
           var datas = {"id": $("#editID").val(),"owner":$inputs[0].value,"started_date":$inputs[1].value,"finished_date":$inputs[2].value,
-        		  "used_days":$inputs[3].value,"category":$("#editSelect").find(':selected').text(),"description":$inputs[4].value};
+            "used_days":$inputs[3].value,"category":$("#editSelect").find(':selected').text(),"description":$inputs[4].value};
           var cpage = parseInt($("#currentPage").val());
           $.ajax({
         	  type: "POST",
@@ -249,18 +261,18 @@ $(function(){
                 var options = $("#editSelect").find("option");
                 for(var i = 0;i < options.length;i++){
                 	if($(options[i]).val().trim() == $tds[4].innerText.trim()){
-                		$(options[i]).prop("selected", true);
+                		$(options[i]).prop("selected", true);//使table中对应的选择框中内容对应到edit弹框，使选择框中的输入项被正确显示
                 		break;
                 	}
                 }
-                $($input[4]).val($tds[5].innerText);
+               $($input[4]).val($tds[5].innerText);
          }
 });
 
   function showError(msg){
     $("#addError").text(msg).show();
   }
-     function calDays (d1,d2,which){
+   function calDays (d1,d2,which){
        var reg=/^(\d{4})(-|\/)(\d{1,2})(-|\/)(\d{1,2})$/;
        if(reg.test(d1) && reg.test(d2)){
          reg.exec(d1);
@@ -300,3 +312,14 @@ $(function(){
               parseInt(t[2], 10) || null
               )).getTime();
           }
+function resetSelect($select){
+	var parent = $select.parent();
+	parent.empty().append('<select id="Select2" name="officeSelect" class="form-control office" style=" border-radius: 4px;'+
+                             'border:1px solid #337ab7;width:300px">'+
+                                 '<option value="" selected="selected">--Choose Category--</option>'+
+                                 '<option value="New Feature ">New Feature</option>'+
+                                 '<option value="Improvement">Improvement</option>'+
+                                '<option value="Bug">Bug</option>'+
+
+                           '</select>');
+}

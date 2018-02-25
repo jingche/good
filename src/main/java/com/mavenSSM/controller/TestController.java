@@ -1,4 +1,4 @@
-  package com.mavenSSM.controller;
+package com.mavenSSM.controller;
 
 import java.util.List;
 
@@ -9,18 +9,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mavenSSM.model.User;
+ 
 import com.mavenSSM.service.Listp1103Service;
 import com.mavenSSM.service.Listp1104Service;
 import com.mavenSSM.service.Listp1114Service;
 import com.mavenSSM.service.Listp1115Service;
-import com.mavenSSM.service.TestService;
+ 
 
 @Controller
 @RequestMapping("/")
 public class TestController {
-	@Autowired
-	private TestService ts;
+	 
 	@Autowired
 	private Listp1103Service listp1103Service;
 	@Autowired
@@ -46,17 +45,14 @@ public class TestController {
 		return "about-us";
 	}
 	
-	@RequestMapping(value="getUser")
-	@ResponseBody
-	public User getUser(){
-		return ts.getUser();
-	}
+	 
 	
 	@RequestMapping(value="getChart", method=RequestMethod.POST)
 	@ResponseBody
-	public List handlerGetChatAjax(@RequestParam("table") String table){
+	public List<?> handlerGetChatAjax(@RequestParam("table") String table){
 		switch(table){
 		case "1103":
+			List<?> list = listp1103Service.getAllListp1103();
 			return listp1103Service.getAllListp1103();
 		case "1104":
 			return listp1104Service.getAllListp1104();

@@ -1,6 +1,8 @@
 package com.mavenSSM.service;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,9 @@ public class ArtifactsService {
 	}
 	
 	public int addNewItem(Artifacts artifacts){
+		final String finishTime = artifacts.getFinished_date();
+		if(finishTime == "")
+			artifacts.setFinished_date(null);
 		listDao.addNewItem(artifacts);
 		return artifacts.getId();
 	}
