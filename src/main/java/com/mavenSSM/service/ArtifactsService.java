@@ -29,6 +29,9 @@ public class ArtifactsService {
 	}
 	
 	public int editItem(Artifacts artifacts){
+		final String finishTime = artifacts.getFinished_date();
+		if(finishTime == "" || finishTime.matches("\\s+"))
+			artifacts.setFinished_date(null);
 		return listDao.editItem(artifacts);
 	}
 }

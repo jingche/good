@@ -29,7 +29,7 @@
 		update ARTIFACTS SET 
 		Owner=#{list.owner}, 
 		Started_date=#{list.started_date}, 
-		Finished_date=#{list.finished_date},
+		Finished_date=#{list.finished_date,jdbcType=DATE},
 		Used_days=#{list.used_days},
 		Category=#{list.category},
 		Description=#{list.description}

@@ -191,6 +191,9 @@ $(function(){
           }*/
           var datas = {"id": $("#editID").val(),"owner":$inputs[0].value,"started_date":$inputs[1].value,"finished_date":$inputs[2].value,
             "used_days":$inputs[3].value,"category":$("#editSelect").find(':selected').text(),"description":$inputs[4].value};
+          var reg = /\s+/;
+          if(reg.test(datas.finished_date))
+        	  datas.finished_date = "";
           var cpage = parseInt($("#currentPage").val());
           $.ajax({
         	  type: "POST",
@@ -274,6 +277,7 @@ $(function(){
   }
    function calDays (d1,d2,which){
        var reg=/^(\d{4})(-|\/)(\d{1,2})(-|\/)(\d{1,2})$/;
+       var white = /\s+/;
        if(reg.test(d1) && reg.test(d2)){
          reg.exec(d1);
          var td1= RegExp.$1 +"-" + RegExp.$3 + "-"+ RegExp.$5;
@@ -281,7 +285,7 @@ $(function(){
          var td2= RegExp.$1 +"-"+ RegExp.$3 + "-"+ RegExp.$5;
          $("#"+which).val(dateDiff(td2,td1));
        }
-       else if(reg.test(d1) && d2==""){
+       else if(reg.test(d1) && (d2=="" || white.test(d2))){
          $("#"+which).val("ongoing");
        }
      }
