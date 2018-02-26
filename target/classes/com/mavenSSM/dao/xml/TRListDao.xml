@@ -22,7 +22,7 @@
   	
   	<insert id="addNewItem" parameterType="com.mavenSSM.model.Trlist" useGeneratedKeys="true" keyProperty="trlist.id" keyColumn="id">
   		INSERT INTO trlist(Eriref, Registered_by, Registered_date,Finished_date,Turnaround_time,Answer_code,Valid, Heading) 
-  		VALUES(#{trlist.eriref}, #{trlist.registered_by}, #{trlist.registered_date},#{trlist.finished_date},
+  		VALUES(#{trlist.eriref}, #{trlist.registered_by}, #{trlist.registered_date},#{trlist.finished_date,jdbcType=DATE},
   		#{trlist.turnaround_time},#{trlist.answer_code},#{trlist.valid},#{trlist.heading})
   	</insert>
 	
@@ -31,7 +31,7 @@
 		Eriref=#{list.eriref}, 
 		Registered_by=#{list.registered_by}, 
 		Registered_date=#{list.registered_date},
-		Finished_date=#{list.finished_date},
+		Finished_date=#{list.finished_date,jdbcType=DATE},
 		Turnaround_time=#{list.turnaround_time},
 		Answer_code=#{list.answer_code},
 		Valid=#{list.valid},

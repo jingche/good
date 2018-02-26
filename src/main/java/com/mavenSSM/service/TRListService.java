@@ -26,6 +26,9 @@ public class TRListService {
 	}
 	
 	public int editItem(Trlist trlist){
+		final String finishTime = trlist.getFinished_date();
+		if(finishTime == "" || finishTime.matches("\\s+"))
+			trlist.setFinished_date(null);
 		return listDao.editItem(trlist);
 	}
 }
