@@ -14,7 +14,11 @@ public class Listp1103Service {
 	private Listp1103Dao listDao;
 	
 	public List<Listp1103> getAllListp1103(){
-		return listDao.getAllLIstp1103();
+		List<Listp1103>list =  listDao.getAllLIstp1103(); 
+		  		PerChange.change(list); 
+		 		return list; 
+
+		 
 	}
 	
 	public int addNewItem(Listp1103 listp1103){

@@ -171,6 +171,10 @@ $(function(){
           }*/
 
         //  验证完后ajax,最后把$("#cancelButton").click(),写入ajax的success中
+          var regspace = /^\s+$/;
+          if(regspace.test(datas.finished_date)){
+        	  datas.finished_date = "";
+          }
           var cpage = parseInt($("#currentPage").val());
           $.ajax({
         	  type: "POST",

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mavenSSM.dao.Listp1114Dao;
+import com.mavenSSM.model.Listp1104;
 import com.mavenSSM.model.Listp1114;
 
 @Service
@@ -14,7 +15,10 @@ public class Listp1114Service {
 	private Listp1114Dao listDao;
 	
 	public List<Listp1114> getAllListp1114(){
-		return listDao.getAllLIstp1114();
+		
+		List<Listp1114> list =  listDao.getAllLIstp1114(); 
+  		PerChange.change(list); 
+ 		return list; 
 	}
 	
 	public int addNewItem(Listp1114 listp1114){

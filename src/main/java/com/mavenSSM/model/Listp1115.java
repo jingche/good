@@ -2,7 +2,7 @@ package com.mavenSSM.model;
 
 import java.util.Date;
 
-public class Listp1115 {
+public class Listp1115 implements Listp{
     private Integer id;
     
     private String date;
